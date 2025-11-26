@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CUA &amp; Outils IA - Conception Universelle des Apprentissages</title>
+    <style>
+/* Modern Design Variables */
+:root {
+  /* Modern Color Palette */
+  --bg-main: #F8F9FB;
+  --bg-card: #FFFFFF;
+  --text-primary: #1F2937;
+  --text-secondary: #6B7280;
+  --border-color: #E5E7EB;
+  --engagement-color: #8B5CF6;
+  --representation-color: #3B82F6;
+  --action-color: #10B981;
+  
+  /* Design System Base */
+  --color-white: rgba(255, 255, 255, 1);
+  --color-black: rgba(0, 0, 0, 1);
+  --color-cream-50: rgba(252, 252, 249, 1);
+  --color-cream-100: rgba(255, 255, 253, 1);
+  --color-gray-200: rgba(245, 245, 245, 1);
+  --color-gray-300: rgba(167, 169, 169, 1);
+  --color-gray-400: rgba(119, 124, 124, 1);
+  --color-slate-500: rgba(98, 108, 113, 1);
+  --color-brown-600: rgba(94, 82, 64, 1);
+  --color-charcoal-700: rgba(31, 33, 33, 1);
+  --color-charcoal-800: rgba(38, 40, 40, 1);
+  --color-slate-900: rgba(19, 52, 59, 1);
+  --color-teal-300: rgba(50, 184, 198, 1);
+  --color-teal-500: rgba(33, 128, 141, 1);
+  --color-teal-600: rgba(29, 116, 128, 1);
+
+  --color-brown-600-rgb: 94, 82, 64;
+  --color-teal-500-rgb: 33, 128, 141;
+  --color-slate-900-rgb: 19, 52, 59;
+  --color-slate-500-rgb: 98, 108, 113;
+  --color-gray-400-rgb: 119, 124, 124;
+  --color-gray-300-rgb: 167, 169, 169;
+  --color-gray-200-rgb: 245, 245, 245;
+
+  --color-background: var(--color-cream-50);
+  --color-surface: var(--color-cream-100);
+  --color-text: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-500);
+  --color-primary: var(--color-teal-500);
+  --color-primary-hover: var(--color-teal-600);
+  --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+
+  --color-engagement: #8B5FBF;
+  --color-engagement-hover: #6B46A3;
+  --color-engagement-light: #A77DD1;
+  --color-representation: #4A90E2;
+  --color-representation-hover: #3A7BC8;
+  --color-representation-light: #6BA3E8;
+  --color-action: #4CAF50;
+  --color-action-hover: #45A049;
+  --color-action-light: #66BB6A;
+
+  --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 20px;
+  --font-size-3xl: 24px;
+  --font-size-4xl: 30px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 550;
+  --font-weight-bold: 600;
+
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-48: 48px;
+
+  --radius-base: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: var(--color-charcoal-700);
+    --color-surface: var(--color-charcoal-800);
+    --color-text: var(--color-gray-200);
+    --color-text-secondary: rgba(var(--color-gray-300-rgb), 0.7);
+    --color-primary: var(--color-teal-300);
+    --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+    --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+    --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', var(--font-family-base);
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar {
+  background-color: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  padding: 16px 32px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  height: 64px;
+  display: flex;
+  align-items: center;
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-16);
+}
+
+.nav-logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-links {
+  display: flex;
+  gap: var(--space-24);
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.nav-links a:hover {
+  color: var(--engagement-color);
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: var(--space-32) var(--space-24);
+}
+
+.hero-section {
+  text-align: center;
+  margin-bottom: var(--space-48);
+  padding: var(--space-32) 0;
+}
+
+.hero-section h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.hero-section p {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 900px;
+  margin: 0 auto 32px auto;
+  line-height: 1.6;
+}
+
+.pillars-nav {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-24);
+  margin-bottom: var(--space-48);
+}
+
+.pillar-nav-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 32px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.pillar-nav-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  transition: height 0.3s ease;
+}
+
+.pillar-nav-card.engagement::before {
+  background: var(--engagement-color);
+}
+
+.pillar-nav-card.representation::before {
+  background: var(--representation-color);
+}
+
+.pillar-nav-card.action::before {
+  background: var(--action-color);
+}
+
+.pillar-nav-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.pillar-nav-card:hover::before {
+  height: 100%;
+  opacity: 0.08;
+}
+
+.pillar-icon {
+  font-size: 48px;
+  margin-bottom: var(--space-12);
+}
+
+.pillar-nav-card h3 {
+  font-size: var(--font-size-xl);
+  margin-bottom: var(--space-8);
+  color: var(--color-text);
+}
+
+.pillar-nav-card p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-32);
+  flex-wrap: wrap;
+  gap: var(--space-16);
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.section-title-icon {
+  font-size: 32px;
+}
+
+.category-tabs {
+  display: flex;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.category-tab {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  padding: 8px 16px;
+  border-radius: 24px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.category-tab:hover {
+  background: var(--color-secondary-hover);
+}
+
+.category-tab.active {
+  color: var(--color-white);
+}
+
+.category-tab.active.engagement {
+  background: var(--engagement-color);
+  border-color: var(--engagement-color);
+  color: white;
+}
+
+.category-tab.active.representation {
+  background: var(--representation-color);
+  border-color: var(--representation-color);
+  color: white;
+}
+
+.category-tab.active.action {
+  background: var(--action-color);
+  border-color: var(--action-color);
+  color: white;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-24);
+  margin-bottom: var(--space-48);
+}
+
+.tool-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  position: relative;
+}
+
+.tool-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+  transition: width 0.3s ease;
+}
+
+.tool-card.engagement::before {
+  background: var(--engagement-color);
+}
+
+.tool-card.representation::before {
+  background: var(--representation-color);
+}
+
+.tool-card.action::before {
+  background: var(--action-color);
+}
+
+.tool-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.tool-card:hover::before {
+  width: 6px;
+}
+
+.tool-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: var(--space-12);
+  gap: var(--space-12);
+}
+
+.tool-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.tool-type {
+  background-color: var(--color-secondary);
+  padding: 4px var(--space-8);
+  border-radius: 4px;
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.tool-description {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.tool-relevance {
+  display: flex;
+  gap: 4px;
+  margin: 12px 0;
+  font-size: 16px;
+  color: #FFC107;
+}
+
+.relevance-badge {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.stars {
+  color: #FFC107;
+  font-size: var(--font-size-base);
+}
+
+.pillar-section {
+  display: none;
+  margin-bottom: var(--space-48);
+}
+
+.pillar-section.active {
+  display: block;
+}
+
+.combinations-section {
+  margin-bottom: var(--space-48);
+}
+
+.combinations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-24);
+}
+
+.combination-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  position: relative;
+  overflow: hidden;
+}
+
+.combination-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+
+.combination-card.engagement::before {
+  background: var(--engagement-color);
+}
+
+.combination-card.representation::before {
+  background: var(--representation-color);
+}
+
+.combination-card.action::before {
+  background: var(--action-color);
+}
+
+.combination-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.combination-tools {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  margin-bottom: var(--space-16);
+}
+
+.combination-tool {
+  padding: 6px 12px;
+  background: #F3F4F6;
+  border-radius: 16px;
+  font-size: 12px;
+  color: var(--text-primary);
+  display: inline-block;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+.combination-integration {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-style: italic;
+  line-height: 1.5;
+  background: #F3F4F6;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-top: 12px;
+}
+
+.heatmap-section {
+  margin-bottom: var(--space-48);
+}
+
+.heatmap-container {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 24px;
+  overflow-x: auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+}
+
+.heatmap-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+
+.heatmap-table th,
+.heatmap-table td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid var(--border-color);
+}
+
+.heatmap-table th {
+  background: #F3F4F6;
+  font-weight: 600;
+  color: var(--text-primary);
+  position: sticky;
+  top: 0;
+}
+
+.heatmap-table th:first-child {
+  text-align: left;
+  position: sticky;
+  left: 0;
+  z-index: 2;
+}
+
+.heatmap-table td:first-child {
+  text-align: left;
+  font-weight: 500;
+  position: sticky;
+  left: 0;
+  background: var(--bg-card);
+  z-index: 1;
+}
+
+.heatmap-cell {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  font-weight: var(--font-weight-semibold);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+  overflow-y: auto;
+  padding: var(--space-24);
+}
+
+.modal.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: var(--bg-card);
+  border-radius: 16px;
+  max-width: 700px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.modal-header {
+  padding: var(--space-24);
+  border-bottom: 1px solid var(--color-card-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: var(--space-16);
+}
+
+.modal-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  flex-shrink: 0;
+}
+
+.modal-close:hover {
+  background-color: var(--color-secondary);
+}
+
+.modal-body {
+  padding: var(--space-24);
+}
+
+.modal-section {
+  margin-bottom: var(--space-24);
+}
+
+.modal-section h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.modal-section p,
+.modal-section ul {
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.modal-section ul {
+  padding-left: var(--space-20);
+  margin: var(--space-8) 0;
+}
+
+.modal-section li {
+  margin-bottom: var(--space-8);
+}
+
+.modal-badges {
+  display: flex;
+  gap: var(--space-8);
+  flex-wrap: wrap;
+}
+
+.modal-badge {
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  display: inline-block;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+.modal-link {
+  display: block;
+  text-align: center;
+  padding: 12px 24px;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.modal-link:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.footer {
+  background-color: #F3F4F6;
+  border-top: 1px solid var(--border-color);
+  padding: 48px 24px;
+  margin-top: 48px;
+}
+
+.footer-content {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footer h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+}
+
+.footer-warnings {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-24);
+  margin-bottom: var(--space-24);
+}
+
+.warning-item {
+  display: flex;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+.warning-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.warning-text {
+  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.warning-text strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.footer-credit {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 13px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+
+  .pillars-nav {
+    grid-template-columns: 1fr;
+  }
+
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .combinations-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@font-face {
+  font-family: 'FKGroteskNeue';
+  src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2') format('woff2');
+}
+    
+/* Enhanced footer layout & small social icons */
+.footer-bottom {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-color);
+}
+
+.footer-credit {
+  text-align: left;
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.footer-author {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-author-text {
+  text-align: right;
+}
+
+.footer-author-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.footer-author-sub {
+  font-size: 12px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.footer-author-links {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-icon-link {
+  width: 26px;
+  height: 26px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #E5E7EB;
+  border: 1px solid var(--border-color);
+  transition: all 0.18s ease-out;
+}
+
+.footer-icon-link--linkedin {
+  background: #0A66C2;
+  border-color: #0A66C2;
+}
+
+.footer-icon-link--rg {
+  background: #0CB27A;
+  border-color: #0CB27A;
+}
+
+.footer-icon {
+  width: 14px;
+  height: 14px;
+  filter: invert(100%) brightness(110%);
+}
+
+.footer-icon-link:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+/* Responsive footer layout */
+@media (max-width: 768px) {
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-author {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .footer-author-text {
+    text-align: left;
+  }
+}
+
+/* Outils - Recherche globale */
+.tools-search {
+  margin: var(--space-24) 0;
+}
+
+.tools-search-label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-8);
+}
+
+.tools-search-control {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: 10px 12px;
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+}
+
+.tools-search-icon {
+  font-size: 1rem;
+}
+
+.tools-search-control input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 0.95rem;
+  background: transparent;
+  color: var(--text-primary);
+}
+
+/* Scénarios pédagogiques & GPIS */
+.combination-meta {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin: 4px 0 8px;
+}
+
+.gpis-box {
+  margin: var(--space-24) 0 var(--space-32);
+  padding: var(--space-16);
+  border-radius: var(--radius-xl);
+  background: linear-gradient(
+    90deg,
+    rgba(139, 92, 246, 0.05),
+    rgba(59, 130, 246, 0.05)
+  );
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-16);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gpis-text {
+  flex: 1 1 240px;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.gpis-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  align-items: flex-end;
+}
+
+.gpis-actions button {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: none;
+  font-size: 0.85rem;
+  cursor: pointer;
+  background: var(--engagement-color);
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.1s ease, box-shadow 0.1s ease, background 0.1s ease;
+}
+
+.gpis-actions button:last-child {
+  background: transparent;
+  color: var(--engagement-color);
+  border: 1px solid rgba(139, 92, 246, 0.6);
+}
+
+.gpis-actions button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.12);
+}
+
+.gpis-link-code {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  font-size: 0.8rem;
+  background: rgba(15, 23, 42, 0.04);
+  padding: 4px 8px;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+}
+
+.copy-feedback {
+  font-size: 0.75rem;
+  color: var(--representation-color);
+}
+
+@media (max-width: 768px) {
+  .gpis-actions {
+    width: 100%;
+    align-items: flex-start;
+  }
+}
+</style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span>🎓</span>
+                <span>CUA &amp; Outils IA</span>
+            </div>
+            <ul class="nav-links">
+                <li><a onclick="scrollTo('hero')">Accueil</a></li>
+                <li><a onclick="scrollTo('pillars')">Piliers</a></li>
+                <li><a onclick="scrollTo('combinations')">Combinaisons</a></li>
+                <li><a onclick="scrollTo('heatmap')">Synthèse</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section id="hero" class="hero-section">
+            <h1>Conception Universelle des Apprentissages &amp; Outils IA</h1>
+            <p>Découvrez comment les outils d'intelligence artificielle soutiennent les trois piliers de la CUA pour créer des environnements d'apprentissage inclusifs, engageants et efficaces pour tous les apprenants.</p>
+        </section>
+
+        <section id="pillars">
+            <div class="pillars-nav">
+                <div class="pillar-nav-card engagement" onclick="showPillar('engagement')">
+                    <div class="pillar-icon">💜</div>
+                    <h3>Engagement</h3>
+                    <p>Stimuler l'intérêt et la motivation</p>
+                </div>
+                <div class="pillar-nav-card representation" onclick="showPillar('representation')">
+                    <div class="pillar-icon">💙</div>
+                    <h3>Représentation</h3>
+                    <p>Présenter l'information de multiples façons</p>
+                </div>
+                <div class="pillar-nav-card action" onclick="showPillar('action')">
+                    <div class="pillar-icon">💚</div>
+                    <h3>Action et Expression</h3>
+                    <p>Offrir des options pour l'action et l'expression</p>
+                </div>
+            </div>
+
+            <!-- 🔍 Recherche globale d’outils -->
+            <div class="tools-search">
+                <label for="tool-search-input" class="tools-search-label">
+                    Rechercher un outil ou un besoin
+                </label>
+                <div class="tools-search-control">
+                    <span class="tools-search-icon">🔍</span>
+                    <input
+                        id="tool-search-input"
+                        type="text"
+                        placeholder="Nom d’outil, usage…"
+                        oninput="setToolSearch(this.value)"
+                    />
+                </div>
+            </div>
+
+            <div id="engagement-section" class="pillar-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-title-icon">💜</span>
+                        <span>Engagement</span>
+                    </h2>
+                    <div class="category-tabs">
+                        <button class="category-tab engagement active" onclick="filterCategory('engagement', 'all')">Tous</button>
+                        <button class="category-tab engagement" onclick="filterCategory('engagement', 'effort')">Effort &amp; Persistance</button>
+                        <button class="category-tab engagement" onclick="filterCategory('engagement', 'interests')">Intérêts &amp; Identités</button>
+                        <button class="category-tab engagement" onclick="filterCategory('engagement', 'emotion')">Capacité Émotionnelle</button>
+                    </div>
+                </div>
+                <div id="engagement-tools" class="tools-grid"></div>
+            </div>
+
+            <div id="representation-section" class="pillar-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-title-icon">💙</span>
+                        <span>Représentation</span>
+                    </h2>
+                    <div class="category-tabs">
+                        <button class="category-tab representation active" onclick="filterCategory('representation', 'all')">Tous</button>
+                        <button class="category-tab representation" onclick="filterCategory('representation', 'perception')">Perception</button>
+                        <button class="category-tab representation" onclick="filterCategory('representation', 'language')">Langage &amp; Symboles</button>
+                        <button class="category-tab representation" onclick="filterCategory('representation', 'knowledge')">Construction des Connaissances</button>
+                    </div>
+                </div>
+                <div id="representation-tools" class="tools-grid"></div>
+            </div>
+
+            <div id="action-section" class="pillar-section">
+                <div class="section-header">
+                    <h2 class="section-title">
+                        <span class="section-title-icon">💚</span>
+                        <span>Action et Expression</span>
+                    </h2>
+                    <div class="category-tabs">
+                        <button class="category-tab action active" onclick="filterCategory('action', 'all')">Tous</button>
+                        <button class="category-tab action" onclick="filterCategory('action', 'expression')">Expression &amp; Communication</button>
+                        <button class="category-tab action" onclick="filterCategory('action', 'physical')">Action Physique</button>
+                        <button class="category-tab action" onclick="filterCategory('action', 'executive')">Fonctions Exécutives</button>
+                    </div>
+                </div>
+                <div id="action-tools" class="tools-grid"></div>
+            </div>
+        </section>
+
+        <section id="combinations" class="combinations-section">
+    <h2 class="section-title">Scénarios pédagogiques &amp; combinaisons d’outils</h2>
+    <p style="text-align: center; color: var(--text-secondary); max-width: 720px; margin: 0 auto var(--space-24);">
+        Découvrez des exemples de scénarios concrets articulant plusieurs outils numériques
+        autour des piliers de la CUA (Engagement, Représentation, Action &amp; Expression).
+    </p>
+
+    <!-- Bloc GPIS -->
+    <div class="gpis-box">
+        <div class="gpis-text">
+            <strong>🧩 Besoin d’un prompt clé en main&nbsp;?</strong><br>
+            Utilisez le générateur de prompts pour l’inclusion scolaire (GPIS) et adaptez
+            ces scénarios à votre niveau de classe et à vos élèves.
+        </div>
+        <div class="gpis-actions">
+            <button type="button" onclick="openGpis()">Ouvrir GPIS</button>
+            <button type="button" onclick="copyGpisLink()">Copier le lien</button>
+            <span id="gpis-copy-feedback" class="copy-feedback" aria-live="polite"></span>
+        </div>
+        <code class="gpis-link-code">https://novapeda.eu/gpis</code>
+    </div>
+
+    <div id="combinations-grid" class="combinations-grid"></div>
+</section>
+
+        <section id="heatmap" class="heatmap-section">
+            <h2 class="section-title">Tableau de Synthèse Global</h2>
+            <p style="text-align: center; color: var(--color-text-secondary); margin-bottom: var(--space-32);">Vue d'ensemble de la pertinence de chaque outil pour les différentes sous-catégories CUA</p>
+            <div class="heatmap-container">
+                <table class="heatmap-table" id="heatmap-table"></table>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <h3>⚠️ Avertissements et Bonnes Pratiques</h3>
+            <div class="footer-warnings">
+                <div class="warning-item">
+                    <div class="warning-icon">👥</div>
+                    <div class="warning-text">
+                        <strong>Ne pas remplacer les humains :</strong> L'IA ne remplace pas les interactions humaines authentiques, essentielles à l'apprentissage social et émotionnel.
+                    </div>
+                </div>
+                <div class="warning-item">
+                    <div class="warning-icon">✓</div>
+                    <div class="warning-text">
+                        <strong>Valider la qualité :</strong> Toujours vérifier et valider les contenus et retours générés par l'IA avant utilisation pédagogique.
+                    </div>
+                </div>
+                <div class="warning-item">
+                    <div class="warning-icon">🔒</div>
+                    <div class="warning-text">
+                        <strong>Confidentialité :</strong> Assurer la protection des données personnelles des apprenants et respecter les réglementations en vigueur.
+                    </div>
+                </div>
+                <div class="warning-item">
+                    <div class="warning-icon">♿</div>
+                    <div class="warning-text">
+                        <strong>Accessibilité réelle :</strong> Tester l'accessibilité effective des outils avec les utilisateurs concernés avant déploiement.
+                    </div>
+                </div>
+                <div class="warning-item">
+                    <div class="warning-icon">🎓</div>
+                    <div class="warning-text">
+                        <strong>Esprit critique :</strong> Former les apprenants à une consommation critique et éthique de l'IA, comprendre ses biais et limites.
+                    </div>
+                </div>
+            </div>
+            <div class="footer-credit">
+                Basé sur les Lignes Directrices de la Conception Universelle des Apprentissages (CAST)
+            </div>
+        </div>
+    </footer>
+
+    <div id="tool-modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-modal="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modal-title"></h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+
+<!-- Footer custom injected -->
+<footer class="footer">
+<div class="footer-content">
+<h3>⚠️ Avertissements et Bonnes Pratiques</h3>
+<div class="footer-bottom">
+    <div class="footer-credit">
+        Basé sur les Lignes Directrices de la Conception Universelle des Apprentissages (CAST)
+    </div>
+
+    <div class="footer-author">
+        <div class="footer-author-text">
+            <div class="footer-author-title">Créé par Sébastien BACLET</div>
+            <div class="footer-author-sub">
+                Formateur pour l’Éducation inclusive, UPJV<br>
+                Membre du Laboratoire PSITEC, ULR U-Lille 4072<br>
+                Membre associé du CRP-CPO, UR UPJV 7273
+            </div>
+        </div>
+
+        <div class="footer-author-links">
+            <a href="https://www.linkedin.com/in/s%C3%A9bastien-baclet-22983740/"
+               target="_blank" rel="noopener noreferrer"
+               class="footer-icon-link footer-icon-link--linkedin">
+               <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/linkedin.svg" class="footer-icon"/>
+            </a>
+            <a href="https://www.researchgate.net/profile/Sebastien-Baclet?ev=hdr_xprf"
+               target="_blank" rel="noopener noreferrer"
+               class="footer-icon-link footer-icon-link--rg">
+               <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/researchgate.svg" class="footer-icon"/>
+            </a>
+        </div>
+    </div>
+</div>
+</footer>
+</body>
+
+</html>

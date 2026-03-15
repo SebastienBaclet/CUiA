@@ -191,19 +191,20 @@ window.CUA_DATA = {
           tutorialUrl: "https://www.youtube.com/watch?v=mbJuqzHRufI"
         },
         {
-          name: "Text-to-Speech (Natural Reader, Speechify)",
+          name: "Text-to-Speech (Readest, Speechify)",
           type: "Outil",
-          description: "Lecture vocale de textes pour accessibilité auditive avec voix naturelles",
+          description: "Lecture vocale de textes pour accessibilité auditive avec voix naturelles et traduction instantanée",
           relevance: { perception: 3, language: 2, knowledge: 1 },
           categories: ["perception", "language"],
           usageCases: [
             "Convertir tout texte en audio naturel pour déficiences visuelles ou dyslexie",
             "Personnaliser voix, vitesse, intonation pour préférences perceptives individuelles",
             "Lecture simultanée texte-audio pour apprentissage multimodal"
+            "traduction instantannée des pages de l'ebook
           ],
           price: "Gratuit / Premium 10€/mois",
-          url: "https://www.naturalreaders.com",
-          tutorialUrl: "https://www.youtube.com/watch?v=RkzuBaxk50g"
+          url: "https://readest.com/fr",
+          tutorialUrl: "https://youtu.be/jUE06fYCB9Q"
         },
         {
           name: "OCR Tools (Text Fairy, FreeOCR, Adobe Scan)",

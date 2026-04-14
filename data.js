@@ -199,7 +199,7 @@ window.CUA_DATA = {
           usageCases: [
             "Convertir tout texte en audio naturel pour déficiences visuelles ou dyslexie",
             "Personnaliser voix, vitesse, intonation pour préférences perceptives individuelles",
-            "Lecture simultanée texte-audio pour apprentissage multimodal"
+            "Lecture simultanée texte-audio pour apprentissage multimodal",
             "traduction instantannée des pages de l'ebook"
           ],
           price: "Gratuit / Premium 10€/mois",
